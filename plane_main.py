@@ -1,5 +1,7 @@
 import pygame
 from plane_sprites import *
+
+
 class PlaneGame(object):
     """飞机大战游戏"""
     def __init__(self):
