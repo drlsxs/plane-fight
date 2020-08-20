@@ -16,15 +16,13 @@ class PlaneGame(object):
         #5. 设置发生子弹事件
         pygame.time.set_timer(HERO_FIRE_EVENT, 500)
 
-
-
     def __create_sprites(self):
         """创建精灵和精灵组"""
 
         # 创建背景精灵和精灵组
         bg1 = Background()
         bg2 = Background(True)
-        self.back_group = pygame.sprite.Group(bg1,bg2)
+        self.back_group = pygame.sprite.Group(bg1, bg2)
 
         #创建敌机的精灵组
         self.enemy_group = pygame.sprite.Group()
@@ -32,7 +30,6 @@ class PlaneGame(object):
         #创建英雄的精灵和精灵组
         self.hero = Hero()
         self.hero_group = pygame.sprite.Group(self.hero)
-
 
     def start_game(self):
         """开始程序里的一些监听、检测、更新、显示"""
@@ -51,7 +48,6 @@ class PlaneGame(object):
             pygame.display.update()
 
             pass
-
 
     def __event_handler(self):
         """监听"""
@@ -78,23 +74,21 @@ class PlaneGame(object):
         else:
             self.hero.speed = 0
 
-
     def __check_collide(self):
         """检测"""
         #1. 子弹摧毁敌机
-        pygame.sprite.groupcollide(self.hero.bullets, self.enemy_group, True, True)
+        pygame.sprite.groupcollide(self.hero.bullets, self.enemy_group, True,
+                                   True)
 
         #2. 敌机摧毁英雄
-        enemies = pygame.sprite.spritecollide(self.hero, self.enemy_group, True)
-
+        enemies = pygame.sprite.spritecollide(self.hero, self.enemy_group,
+                                              True)
 
         if len(enemies) > 0:
             #让英雄牺牲
             self.hero.kill()
             #结束游戏
             PlaneGame.__game_over()
-
-
 
     def __update_sprites(self):
         """ 精灵组的更新和绘制在屏幕"""
@@ -113,7 +107,6 @@ class PlaneGame(object):
         self.hero.bullets.update()
         self.hero.bullets.draw(self.screen)
 
-
     @staticmethod
     def __game_over():
         """游戏结束，关闭模块，退出程序"""
@@ -125,7 +118,6 @@ class PlaneGame(object):
 if __name__ == '__main__':
     #创建游戏对象
     game = PlaneGame()
-
 
     #启动游戏
     game.start_game()
